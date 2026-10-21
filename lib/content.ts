@@ -248,11 +248,55 @@ export const parkRules: ParkRule[] = [
   },
 ];
 
-export type Zone = {  name: string;
+export type Zone = {
+  name: string;
   access: string;
   description: string;
   icon: "shield" | "compass" | "home";
 };
+
+export type ZoneRule = {
+  name: string;
+  access: string;
+  icon: Zone["icon"];
+  permitted: string[];
+  prohibited: string[];
+};
+
+export const zoneMatrix: ZoneRule[] = [
+  {
+    name: "Strict Protection Zone",
+    access: "Closed to tourism",
+    icon: "shield",
+    permitted: [
+      "Scientific research with a PENRO permit",
+      "Ranger patrols and nest monitoring",
+    ],
+    prohibited: ["Any boat entry or landing", "Fishing, swimming, drone flight"],
+  },
+  {
+    name: "Sustainable Use Zone",
+    access: "Guided access only",
+    icon: "compass",
+    permitted: [
+      "Accredited boat tours with a licensed guide",
+      "Designated photography points",
+      "Rod-and-line angling with a permit",
+    ],
+    prohibited: ["Jet skis and speedboats", "Anchoring on reed beds", "Feeding wildlife"],
+  },
+  {
+    name: "Buffer Zone",
+    access: "Controlled access",
+    icon: "home",
+    permitted: [
+      "Shoreline footpaths and community homestays",
+      "Cultural activities led by residents",
+      "Non-motorised craft",
+    ],
+    prohibited: ["Clearing shoreline vegetation", "Waste dumping", "Unannounced night access"],
+  },
+];
 
 export const lakeZones: Zone[] = [
   {

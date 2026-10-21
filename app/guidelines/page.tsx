@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarClock, ChevronRight, ShieldCheck, Users } from "lucide-react";
 import { ConservationRules } from "@/components/guidelines/conservation-rules";
+import { ZoningTable } from "@/components/guidelines/zoning-table";
+import { SafetyPanel } from "@/components/guidelines/safety-panel";
 
 export const metadata: Metadata = {
   title: "Park Guidelines",
@@ -58,6 +60,8 @@ export default function GuidelinesPage() {
       </section>
 
       <ConservationRules />
+      <ZoningTable />
+      <SafetyPanel />
     </>
   );
 }
