@@ -196,12 +196,107 @@ export const recentAdvisories: Advisory[] = [
   },
 ];
 
+export type ParkRule = {
+  title: string;
+  description: string;
+  why: string;
+  icon: "leaf" | "ban" | "camera" | "lifebuoy" | "fish" | "footprints" | "users";
+};
+
+export const parkRules: ParkRule[] = [
+  {
+    title: "Leave nothing behind",
+    description:
+      "Everything you bring — wrappers, bottles, bait boxes — leaves with you. There are no bins on the water.",
+    why: "Plastic in the shallows is ingested by ducks and fish within days.",
+    icon: "leaf",
+  },
+  {
+    title: "Never feed or approach wildlife",
+    description:
+      "Keep at least 30 metres from roosting birds, and never lure them with food for a photograph.",
+    why: "Hand-fed birds lose their foraging instinct and drift into boat lanes.",
+    icon: "ban",
+  },
+  {
+    title: "No flash at nesting sites",
+    description:
+      "Between October and March, flash photography and drone flight are prohibited within 100 m of reed beds.",
+    why: "A single disturbance can make a pair abandon its clutch.",
+    icon: "camera",
+  },
+  {
+    title: "Wear your life jacket",
+    description:
+      "Every passenger, every crossing. Children under 12 keep theirs on for the whole tour.",
+    why: "Required by coast guard rules and checked at the jetty before departure.",
+    icon: "lifebuoy",
+  },
+  {
+    title: "Fish only where it is allowed",
+    description:
+      "Rod and line in the sustainable use zone only. Nets, traps, and electro-fishing are prohibited park-wide.",
+    why: "Spawning beds sit inside the strict protection zone.",
+    icon: "fish",
+  },
+  {
+    title: "Ask before you photograph people",
+    description:
+      "Fisherfolk and homestay hosts are neighbours, not scenery. Ask first, and buy from local vendors.",
+    why: "Tourism only protects the lake while it respects the people who live beside it.",
+    icon: "users",
+  },
+];
+
 export type Zone = {
   name: string;
   access: string;
   description: string;
   icon: "shield" | "compass" | "home";
 };
+
+export type ZoneRule = {
+  name: string;
+  access: string;
+  icon: Zone["icon"];
+  permitted: string[];
+  prohibited: string[];
+};
+
+export const zoneMatrix: ZoneRule[] = [
+  {
+    name: "Strict Protection Zone",
+    access: "Closed to tourism",
+    icon: "shield",
+    permitted: [
+      "Scientific research with a PENRO permit",
+      "Ranger patrols and nest monitoring",
+    ],
+    prohibited: ["Any boat entry or landing", "Fishing, swimming, drone flight"],
+  },
+  {
+    name: "Sustainable Use Zone",
+    access: "Guided access only",
+    icon: "compass",
+    permitted: [
+      "Accredited boat tours with a licensed guide",
+      "Designated photography points",
+      "Rod-and-line angling with a permit",
+    ],
+    prohibited: ["Jet skis and speedboats", "Anchoring on reed beds", "Feeding wildlife"],
+  },
+  {
+    name: "Buffer Zone",
+    access: "Controlled access",
+    icon: "home",
+    permitted: [
+      "Shoreline footpaths and community homestays",
+      "Cultural activities led by residents",
+      "Non-motorised craft",
+    ],
+    prohibited: ["Clearing shoreline vegetation", "Waste dumping", "Unannounced night access"],
+  },
+];
 
 export const lakeZones: Zone[] = [
   {
