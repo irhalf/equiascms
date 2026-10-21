@@ -169,7 +169,7 @@ export type Advisory = {
   publishedAt: string;
 };
 
-export const recentAdvisories: Advisory[] = [
+export const allAdvisories: Advisory[] = [
   {
     slug: "boat-speed-restriction-melgar-mouth",
     severity: "WARNING",
@@ -194,7 +194,42 @@ export const recentAdvisories: Advisory[] = [
       "The first flocks have reached the southern shallows. Guides are adjusting departure times to 5:30 AM.",
     publishedAt: "02 Oct 2026",
   },
+  {
+    slug: "typhoon-nando-lake-closure",
+    severity: "CRITICAL",
+    title: "Lake closed to all boat traffic as Typhoon Nando crosses Mindoro",
+    excerpt:
+      "Closure lifted on 30 September after a full safety inspection of the jetty and moorings. No damage was recorded.",
+    publishedAt: "28 Sep 2026",
+  },
+  {
+    slug: "morning-fog-northern-basin",
+    severity: "WARNING",
+    title: "Low visibility in the northern basin until mid-morning",
+    excerpt:
+      "Fog banks are lingering past 8:00 AM. Operators are delaying departures and running at reduced speed.",
+    publishedAt: "24 Sep 2026",
+  },
+  {
+    slug: "new-mooring-buoys-bayani",
+    severity: "INFO",
+    title: "New mooring buoys installed at the Brgy. Bayani jetty",
+    excerpt:
+      "Twelve buoys now mark the shallow approach, keeping anchors off the reed beds during peak season.",
+    publishedAt: "15 Sep 2026",
+  },
+  {
+    slug: "guides-first-aid-refresher",
+    severity: "INFO",
+    title: "Forty-two guides complete wetland first-aid refresher",
+    excerpt:
+      "The two-day course covered cold-water response, capsize drills, and patient transport from the western shore.",
+    publishedAt: "03 Sep 2026",
+  },
 ];
+
+/** The three newest notices, used by the home page feed. */
+export const recentAdvisories: Advisory[] = allAdvisories.slice(0, 3);
 
 export type ParkRule = {
   title: string;
