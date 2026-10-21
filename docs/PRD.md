@@ -1,0 +1,378 @@
+# Product Requirements Document (PRD)
+## Naujan Lake Eco-Tourism & Wildlife Information Management System
+
+- **Project Name:** Naujan Lake Eco-Tourism & Wildlife Information Management System (Visitor Hub)
+- **Target Location:** Naujan Lake National Park (Ramsar Site No. 1008), Oriental Mindoro, Philippines
+- **Document Version:** 1.0.0
+- **Status:** Approved / Ready for Implementation
+- **Author:** Troy R. Pajarito
+- **Tech Stack:** Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4, Supabase (PostgreSQL, Auth, Storage)
+
+---
+
+## 1. Executive Summary & Problem Statement
+
+### 1.1 Context
+Naujan Lake is the fifth largest lake in the Philippines, a proclaimed National Park, and a designated **Ramsar Wetland of International Importance**. It is a vital sanctuary for thousands of migratory waterbirds, rare waterfowl, and endemic freshwater aquatic species. 
+
+### 1.2 The Problem
+1. **Scattered & Outdated Information:** Information on biodiversity, tourist boat tours, visiting rates, and lake access points is fragmented across outdated social media posts and static pages.
+2. **Lack of Structured Biodiversity Education:** Visitors and students have limited access to verified ecological data (IUCN conservation status, habitat information, seasonal migration schedules).
+3. **Unregulated Tourism & Safety Concerns:** Absence of a centralized, accessible digital repository for park guidelines, lake zoning policies, safety protocols, and waste management rules increases ecological degradation risks.
+4. **No Centralized Advisory or Notification Channel:** When severe weather, water level changes, or bird migration peaks occur, park authorities lack a direct notification mechanism for visitors and researchers.
+5. **Technical Bottlenecks in Content Management:** Previous promotion efforts relied on manual updates or static code manipulation, preventing non-technical park rangers and municipal tourism staff from updating records easily.
+
+### 1.3 The Solution
+A unified, responsive **Information Management System and Visitor Hub** providing:
+- A public-facing portal for wildlife discovery, eco-tourism packages, conservation guidelines, and real-time park advisories.
+- A newsletter and membership system for visitor alerts and researcher access.
+- A secure, role-based **Administrative Content Management System (CMS)** enabling authorized park staff to manage wildlife records, tour packages, advisories, and booking inquiries without writing code.
+
+---
+
+## 2. Product Vision, Goals & Success Metrics (KPIs)
+
+### 2.1 Product Vision
+To establish the definitive digital hub for Naujan Lake National Park that balances sustainable eco-tourism promotion with active wildlife conservation education and modern visitor engagement.
+
+### 2.2 Core Product Goals
+- **Promote Sustainable Eco-Tourism:** Highlight accredited local boat operators, eco-tourism packages, birdwatching viewpoints, and cultural heritage.
+- **Educate on Biodiversity:** Provide an interactive, structured wildlife catalog featuring endemic and migratory species with conservation classifications.
+- **Enhance Visitor Safety & Compliance:** Ensure all visitors have immediate access to lake rules, zoning regulations, and emergency contacts.
+- **Empower Park Administrators:** Deliver an intuitive backoffice CMS for rapid publication of advisories, articles, and inventory of eco-tourism packages.
+
+### 2.3 Key Success Metrics (KPIs)
+| Metric Category | KPI Target |
+| :--- | :--- |
+| **Performance** | Core Web Vitals: LCP < 2.0s, CLS < 0.1, FID/INP < 100ms on 4G mobile networks |
+| **Accessibility** | 100% compliance with WCAG 2.1 Level AA contrast and keyboard accessibility |
+| **SEO & Discoverability** | 90+ Lighthouse SEO score; structured metadata for all wildlife species and tour packages |
+| **Content Efficiency** | Admin can publish a critical park advisory or new wildlife entry in under 3 minutes |
+| **Mobile Responsiveness** | Flawless rendering on mobile viewports (375px+ to 4K desktop) |
+
+---
+
+## 3. Target User Personas & User Journeys
+
+### 3.1 Persona Profiles
+
+#### Persona A: Eco-Tourist / Casual Visitor ("The Explorer")
+- **Profile:** Domestic or international traveler planning a trip to Oriental Mindoro.
+- **Needs:** View curated tour packages, boat hire fees, birdwatching seasons, directions, safety guidelines, and send booking inquiries.
+- **Pain Points:** Hard to find official rates; uncertain about lake rules and current weather/water conditions.
+
+#### Persona B: Student / Academic Researcher ("The Biologist")
+- **Profile:** University researcher, high school student, or conservationist studying wetland ecology.
+- **Needs:** Searchable biodiversity catalog, scientific taxonomy, IUCN/DENR conservation status, species descriptions, and high-resolution media.
+- **Pain Points:** Lack of organized local databases; inconsistent taxonomy on informal websites.
+
+#### Persona C: Park Administrator / Ranger / Tourism Officer ("The Custodian")
+- **Profile:** DENR-PENRO / LGU Tourism staff or Bantay Lawa member managing Naujan Lake National Park.
+- **Needs:** Easy backoffice dashboard to post urgent advisories, add newly cataloged wildlife, update tour tariffs, review inquiries, and broadcast newsletters.
+- **Pain Points:** Inability to update websites without hiring a developer; difficulty reaching registered visitors quickly.
+
+---
+
+## 4. System Architecture & Tech Stack
+
+```
+                                  +---------------------------------------+
+                                  |         Next.js 16 (Turbopack)        |
+                                  |     React 19, TypeScript, Tailwind    |
+                                  +-------------------+-------------------+
+                                                      |
+                         +----------------------------+----------------------------+
+                         |                                                         |
+                         v                                                         v
+          +-------------------------------+                         +-------------------------------+
+          |         Public Portal         |                         |      Admin CMS Dashboard      |
+          | - Home & Hero Showcase        |                         | - Role-Based Access Control   |
+          | - Wildlife Catalog & Search   |                         | - Species & Taxonomy Manager  |
+          | - Eco-Tourism & Tour Packages |                         | - Tour Packages & Inquiries   |
+          | - Park Rules & Zoning Map     |                         | - Advisories & Post Editor    |
+          | - Advisories & News Feed      |                         | - Newsletter Subscribers List |
+          | - Newsletter / Membership     |                         | - System Analytics & Metrics  |
+          +---------------+---------------+                         +---------------+---------------+
+                          |                                                         |
+                          +----------------------------+----------------------------+
+                                                       |
+                                                       v
+                                    +-------------------------------------+
+                                    |         Backend Services Layer       |
+                                    |    Supabase (PostgreSQL, Auth, RLS)  |
+                                    |    - Auth: Visitor / Admin Roles    |
+                                    |    - Storage: Media & Photo Buckets |
+                                    |    - Edge Functions / Webhooks      |
+                                    +-------------------------------------+
+```
+
+### 4.1 Tech Stack Specifications
+- **Framework:** Next.js 16.3+ (App Router, Server Components & Server Actions)
+- **Language:** TypeScript 5+ (Strict type-checking)
+- **Styling:** Tailwind CSS v4 with curated design system inspired by `ui-ux-pro-max` (Nature palette: emerald/teal/slate/amber)
+- **Icons:** Lucide React (standardized SVG icon set, strictly zero emojis as icons)
+- **Database & Auth:** Supabase (PostgreSQL 15+, Row-Level Security, Supabase Auth with Role Claims)
+- **Media Storage:** Supabase Storage (Optimized WebP images with Next.js Image caching)
+- **Forms & Validation:** Zod + React Hook Form
+
+---
+
+## 5. Information Architecture & Sitemap
+
+```
+/
+├── / (Home: Hero, Highlights, Lake Overview, Recent Advisories, CTA)
+├── /wildlife (Searchable Biodiversity Directory)
+│   ├── /[slug] (Detailed Species Profile & Conservation Information)
+├── /tours (Eco-Tourism Packages, Boat Guides, Scenic Spots)
+│   ├── /[slug] (Package Details & Booking Inquiry Form)
+├── /guidelines (Park Rules, Lake Zoning, Waste Management & Safety)
+├── /advisories (Conservation News, Seasonal Announcements & Urgent Alerts)
+│   ├── /[slug] (Advisory / Article View)
+├── /inquire (General Visitor Inquiry & Contact Form)
+├── /subscribe (Newsletter Subscription & Preferences)
+└── /admin (Secure Management Portal)
+    ├── /login (Admin Authentication)
+    ├── /dashboard (Overview Metrics & Quick Actions)
+    ├── /species (Species CRUD & Media Upload)
+    ├── /tours (Tour Packages CRUD)
+    ├── /advisories (Advisories & News CMS)
+    ├── /rules (Park Rules & Policies Editor)
+    ├── /inquiries (Visitor Booking & Inquiry Management)
+    └── /subscribers (Newsletter Audience Management)
+```
+
+---
+
+## 6. Functional Requirements (FRD)
+
+### Module 1: Wildlife Biodiversity Catalog
+- **FR-1.1 Category Hierarchy:** Group species by Class (Waterbirds & Migratory Birds, Freshwater Fishes, Amphibians & Reptiles, Mammals, Wetland Flora).
+- **FR-1.2 Species Profile Schema:**
+  - Common Name (English)
+  - Local Name (Tagalog/Mangyan where applicable)
+  - Scientific Name (Italicized genus + species)
+  - Conservation Status Tag (IUCN / DENR categories: *Critically Endangered, Endangered, Vulnerable, Near Threatened, Least Concern*)
+  - Habitat & Distribution within Naujan Lake (Lake center, marshland, river mouths)
+  - Seasonality / Presence (Year-round Resident, Migratory Winter Visitor [Oct-March])
+  - Diet, Ecological Role & Identifying Features
+  - High-resolution photo gallery with credits and caption
+- **FR-1.3 Related Tours & Habitats:** Link wildlife profiles to relevant tour packages (e.g. Philippine Duck linked to Birdwatching Boat Tour).
+
+### Module 2: Eco-Tourism Packages & Visitor Guide
+- **FR-2.1 Package Listings:** Showcase approved eco-tourism activities:
+  - Guided Birdwatching Expeditions
+  - Scenic Sunrise/Sunset Boat Tours
+  - Cultural & Lakeside Community Homestays
+  - Educational Research Treks
+- **FR-2.2 Package Profile Details:**
+  - Itinerary overview & estimated duration
+  - Maximum group capacity & guide requirements
+  - Standard rate / tariff schedule (Breakdown of environmental fee, boat rental, tour guide fee)
+  - What to bring / recommended attire
+  - Physical difficulty level (Easy, Moderate, Challenging)
+- **FR-2.3 Booking Inquiry Engine:**
+  - Online inquiry submission (Full name, email, phone, date of visit, party size, package selected, special requests).
+  - Generates a unique tracking reference code.
+  - Sends immediate email confirmation to user and notification to the admin queue.
+
+### Module 3: Park Rules, Regulations & Zoning
+- **FR-3.1 Conservation Guidelines:** Clear, visual display of core rules:
+  - Strict "No Littering / Leave No Trace" policy
+  - Wildlife disturbance prohibitions (No flash photography during nesting, no feeding)
+  - Fishing restrictions & prohibited gear within sanctuary areas
+  - Life jacket requirements for all watercraft passengers
+- **FR-3.2 Lake Zoning System:**
+  - **Strict Protection Zone:** Closed to tourism; reserved for breeding birds and fish spawning.
+  - **Recreational / Sustainable Use Zone:** Open for guided boat tours, designated photography points, and regulated angling.
+  - **Buffer Zone:** Surrounding shoreline communities with controlled access.
+
+### Module 4: News, Announcements & Park Advisories
+- **FR-4.1 Advisory Levels:**
+  - `CRITICAL` (Red banner: Severe typhoon warning, lake closure, flash flood alert)
+  - `WARNING` (Amber banner: High water levels, restricted boat navigation)
+  - `INFO / SEASONAL` (Emerald banner: Annual Asian Waterbird Census results, migratory bird arrival peaks)
+- **FR-4.2 Persistent Top Banner:** Any active `CRITICAL` advisory automatically appears across all portal pages.
+- **FR-4.3 Rich Text Article Publishing:** Full support for rich text formatting, embedded images, and PDF downloadable advisories.
+
+### Module 5: Search, Filter & Taxonomy Engine
+- **FR-5.1 Universal Keyword Search:** Search bar on navbar and catalog pages indexing species names, packages, and news.
+- **FR-5.2 Multi-Facet Filters:**
+  - Filter by Category (Birds, Fish, Plants, Reptiles)
+  - Filter by Conservation Status (Endangered, Vulnerable, etc.)
+  - Filter by Seasonality (Migratory, Resident)
+- **FR-5.3 URL State Persistence:** Filters update URL query params (`?category=birds&status=vulnerable`) for easy bookmarking and sharing.
+
+### Module 6: Membership & Newsletter System
+- **FR-6.1 Public Subscription Form:** Instant email subscription with topic preferences (Park Advisories, Bird Migration Updates, Eco-Tour Promos).
+- **FR-6.2 Member Registration (Optional):**
+  - **General Visitor:** Save favorite species, track inquiry history.
+  - **Researcher / Academic:** Request access to high-detail field notes and research archives.
+- **FR-6.3 Automated Newsletter Dispatch:** Triggers email alerts to subscribers when critical advisories or monthly digests are published.
+
+### Module 7: Administrative CMS & Backoffice Dashboard
+- **FR-7.1 Role-Based Access Control (RBAC):**
+  - `Super Admin`: User management, system configuration, full CRUD.
+  - `Park Officer / Content Manager`: Create and edit species, tours, advisories, and manage inquiries.
+  - `Inquiry Staff`: Read and update booking inquiry statuses.
+- **FR-7.2 Dashboard Analytics:**
+  - Total cataloged species & status breakdown
+  - Active advisories count
+  - Recent pending tour inquiries (Pending, Contacted, Confirmed, Cancelled)
+  - Total newsletter subscribers
+- **FR-7.3 Intuitive Data Management:** Easy tabular views with search, pagination, bulk operations, and media upload dialogs.
+
+---
+
+## 7. Database Schema & Data Models
+
+### 7.1 Entity Relationship Overview
+```
++------------------+         +--------------------+         +-------------------+
+|    categories    | <-----+ |      species       | +-----> |   species_media   |
++------------------+         +--------------------+         +-------------------+
+                                       |
+                                       | (references)
+                                       v
++------------------+         +--------------------+         +-------------------+
+|      tours       | <-----+ |  tour_inquiries    |         |    advisories     |
++------------------+         +--------------------+         +-------------------+
+                                                                      |
++------------------+                                                  v
+|   subscribers    | <--------------------------------------- [email broadcast]
++------------------+
+```
+
+### 7.2 Tables Definition
+
+#### `categories`
+| Column | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `id` | UUID | PRIMARY KEY | Unique ID |
+| `name` | TEXT | NOT NULL, UNIQUE | E.g. "Waterbirds", "Freshwater Fish" |
+| `slug` | TEXT | NOT NULL, UNIQUE | URL slug |
+| `description` | TEXT | NULLABLE | Category description |
+
+#### `species`
+| Column | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `id` | UUID | PRIMARY KEY | Unique ID |
+| `category_id` | UUID | REFERENCES categories(id) | Foreign key |
+| `common_name` | TEXT | NOT NULL | E.g. "Philippine Duck" |
+| `local_name` | TEXT | NULLABLE | E.g. "Papan" |
+| `scientific_name` | TEXT | NOT NULL | E.g. "Anas luzonica" |
+| `conservation_status`| ENUM | NOT NULL | CR, EN, VU, NT, LC, DD |
+| `habitat` | TEXT | NOT NULL | Habitat details |
+| `seasonality` | ENUM | NOT NULL | RESIDENT, MIGRATORY, SEASONAL |
+| `description` | TEXT | NOT NULL | Comprehensive overview |
+| `featured_image` | TEXT | NOT NULL | URL to primary image |
+| `slug` | TEXT | NOT NULL, UNIQUE | URL identifier |
+| `created_at` | TIMESTAMPTZ | DEFAULT NOW() | Timestamp |
+
+#### `tours`
+| Column | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `id` | UUID | PRIMARY KEY | Unique ID |
+| `title` | TEXT | NOT NULL | E.g. "Sunrise Birdwatching Cruise" |
+| `slug` | TEXT | NOT NULL, UNIQUE | URL slug |
+| `duration` | TEXT | NOT NULL | E.g. "3-4 Hours" |
+| `rate_per_person` | DECIMAL | NOT NULL | Base fee in PHP |
+| `max_capacity` | INTEGER | NOT NULL | E.g. 6 persons per boat |
+| `difficulty` | ENUM | NOT NULL | EASY, MODERATE, CHALLENGING |
+| `inclusions` | TEXT[] | NOT NULL | Array of included items (Life vest, guide) |
+| `featured_image` | TEXT | NOT NULL | Cover image URL |
+| `is_active` | BOOLEAN | DEFAULT TRUE | Active status |
+
+#### `tour_inquiries`
+| Column | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `id` | UUID | PRIMARY KEY | Unique ID |
+| `reference_code` | TEXT | NOT NULL, UNIQUE | E.g. "NL-2026-8492" |
+| `tour_id` | UUID | REFERENCES tours(id) | Tour requested |
+| `full_name` | TEXT | NOT NULL | Visitor full name |
+| `email` | TEXT | NOT NULL | Contact email |
+| `phone` | TEXT | NOT NULL | Contact mobile number |
+| `target_date` | DATE | NOT NULL | Intended visit date |
+| `party_size` | INTEGER | NOT NULL | Number of guests |
+| `status` | ENUM | DEFAULT 'PENDING' | PENDING, CONTACTED, CONFIRMED, REJECTED |
+| `notes` | TEXT | NULLABLE | Visitor remarks / special needs |
+| `created_at` | TIMESTAMPTZ | DEFAULT NOW() | Submission time |
+
+#### `advisories`
+| Column | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `id` | UUID | PRIMARY KEY | Unique ID |
+| `title` | TEXT | NOT NULL | Advisory headline |
+| `slug` | TEXT | NOT NULL, UNIQUE | URL slug |
+| `severity` | ENUM | NOT NULL | CRITICAL, WARNING, INFO |
+| `content` | TEXT | NOT NULL | Full article / advisory text |
+| `is_active_banner`| BOOLEAN | DEFAULT FALSE | Whether shown in global banner |
+| `published_at` | TIMESTAMPTZ | DEFAULT NOW() | Date published |
+
+#### `subscribers`
+| Column | Type | Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `id` | UUID | PRIMARY KEY | Unique ID |
+| `email` | TEXT | NOT NULL, UNIQUE | Subscriber email address |
+| `status` | ENUM | DEFAULT 'ACTIVE' | ACTIVE, UNSUBSCRIBED |
+| `subscribed_at` | TIMESTAMPTZ | DEFAULT NOW() | Date joined |
+
+---
+
+## 8. Non-Functional Requirements (NFRs)
+
+### 8.1 Performance & Scalability
+- **Page Load Speed:** Server-Side Rendered (SSR) / Static Site Generation (SSG) with ISR for catalog pages. Sub-2s First Contentful Paint.
+- **Image Optimization:** Automatic WebP delivery with Next.js `<Image>` component, responsive sizes, and lazy loading below the fold.
+
+### 8.2 SEO & Social Discoverability
+- Dynamic OpenGraph (OG) image generation and structured JSON-LD schemas (`TouristAttraction`, `Article`, `Species`).
+- Human-readable canonical URLs and auto-generated XML sitemaps.
+
+### 8.3 Accessibility & Design Excellence
+- Adherence to WCAG 2.1 AA: Minimum 4.5:1 text contrast ratio for normal body copy and 3:1 for large headers.
+- Full keyboard navigation (Tab index, visible focus rings, ARIA labels on all interactive icons).
+- Nature-inspired color palette (Emerald green, lake blue, clean slate, amber accents) utilizing the project's `ui-ux-pro-max` guidelines. Zero amateur emoji icons; strictly professional Lucide SVG icons.
+
+### 8.4 Security & Data Privacy
+- Supabase Row-Level Security (RLS) policies enforcing that only authenticated administrators can mutate data.
+- Input sanitization on all inquiry and subscription forms to prevent XSS and SQL injection.
+
+---
+
+## 9. Scope Boundaries: In-Scope vs. Explicitly Out-of-Scope
+
+### 9.1 In-Scope
+- Centralized public web portal (Wildlife directory, tour packages, park rules, advisories, search).
+- Visitor tour booking inquiry workflow with reference tracking.
+- Email newsletter subscription engine.
+- Role-based Admin CMS backoffice for content and inquiry management.
+- Responsive design across mobile, tablet, and desktop devices.
+
+### 9.2 Explicitly Out-of-Scope
+- **Physical IoT Sensor Hardware:** Real-time lake depth sensors, automated water salinity telemetry, or animal satellite collars.
+- **Direct Online Payment Gateway Integration:** E-commerce credit card / GCash merchant checkouts (the system uses booking inquiry with on-site payment at park headquarters to comply with local LGU/DENR treasury regulations).
+- **Emergency 911 Dispatching:** System provides emergency contact numbers but does not replace municipal 911 or Coast Guard rescue dispatch services.
+- **Academic Thesis Overhead:** Student grading rubrics, statistical sampling formulas, and Likert scale matrices are strictly excluded from the production software.
+
+---
+
+## 10. Implementation Roadmap & Release Phases
+
+### Phase 1: MVP (Core Public Visitor Hub)
+1. **Design System & Layout:** Tailwind CSS setup with nature/lake theme, navigation bar, footer, and mobile drawer.
+2. **Wildlife Catalog:** Searchable directory with categories, species detail pages, and status badges.
+3. **Eco-Tours & Attractions:** Package cards, itinerary view, and booking inquiry modal/form.
+4. **Park Guidelines & Zoning:** Interactive rules and conservation etiquette guide.
+5. **Park Advisories:** Announcements feed and emergency warning banner.
+
+### Phase 2: Administrative CMS & Data Layer
+1. **Supabase Integration:** Database schema migration, RLS policies, and Auth setup.
+2. **Admin Backoffice:** Protected dashboard layout, species management (CRUD + image upload), tour package management.
+3. **Inquiry Management:** Admin dashboard to process, filter, and update visitor tour inquiries.
+4. **Advisory CMS:** Publishing tool with instant critical banner toggling.
+
+### Phase 3: Engagement & Optimization
+1. **Newsletter Engine:** Automated notification triggers for new critical advisories.
+2. **SEO & OpenGraph Enhancement:** Dynamic social cards for every species and package.
+3. **Performance & A11y Audit:** Verification against Lighthouse scores and mobile responsive testing.
