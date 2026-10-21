@@ -137,7 +137,7 @@ export function SiteFooter() {
       {/* Editorial watermark */}
       <p
         aria-hidden="true"
-        className="pointer-events-none select-none whitespace-nowrap text-center font-display text-[19vw] font-semibold leading-[0.75] tracking-tight text-paper/[0.04]"
+        className="pointer-events-none -mb-[1.5vw] select-none whitespace-nowrap text-center font-display text-[13.5vw] font-semibold leading-[0.72] tracking-tight text-paper/[0.04]"
       >
         Naujan Lake
       </p>

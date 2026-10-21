@@ -2,13 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Clock, Compass, Feather, ShieldCheck, Ship } from "lucide-react";
 import { parkStats, site } from "@/lib/site";
+import { AdvisoryStrip } from "@/components/home/advisory-strip";
+import { LakeOverview } from "@/components/home/lake-overview";
+import { WildlifeFeature } from "@/components/home/wildlife-feature";
+import { ToursPreview } from "@/components/home/tours-preview";
+import { ZoningBand } from "@/components/home/zoning-band";
+import { AdvisoriesFeed } from "@/components/home/advisories-feed";
+import { NewsletterCta } from "@/components/home/newsletter-cta";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=2400&q=80";
 
 export default function HomePage() {
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-70px)] flex-col justify-end overflow-hidden bg-forest-deep md:min-h-[calc(100svh-106px)]">
+    <>
+      <section className="relative isolate flex min-h-[calc(100svh-70px)] flex-col justify-end overflow-hidden bg-forest-deep md:min-h-[calc(100svh-106px)]">
       <Image
         src={HERO_IMAGE}
         alt="A wooden boat resting on the clear turquoise water of a mountain lake"
@@ -148,6 +156,15 @@ export default function HomePage() {
           ))}
         </dl>
       </div>
-    </section>
+      </section>
+
+      <AdvisoryStrip />
+      <LakeOverview />
+      <WildlifeFeature />
+      <ToursPreview />
+      <ZoningBand />
+      <AdvisoriesFeed />
+      <NewsletterCta />
+    </>
   );
 }
