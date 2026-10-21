@@ -167,6 +167,7 @@ export type Advisory = {
   title: string;
   excerpt: string;
   publishedAt: string;
+  body: string[];
 };
 
 export const allAdvisories: Advisory[] = [
@@ -177,6 +178,11 @@ export const allAdvisories: Advisory[] = [
     excerpt:
       "Sustained rains have raised water levels. Reduce wake within 200 metres of the nesting marsh until further notice.",
     publishedAt: "18 Oct 2026",
+    body: [
+      "Water levels at the Melgar river mouth have risen steadily since 14 October, pushing the channel over its banks and flooding the reed beds where herons and egrets are nesting.",
+      "All operators are asked to reduce speed to a slow drift within 200 metres of the marsh edge. Wake from fast boats erodes nest platforms and tips clutches into the water.",
+      "The restriction stays in force until the water recedes and the office completes a nest count. Ask your guide on the morning of your tour, or check this page before departure.",
+    ],
   },
   {
     slug: "asian-waterbird-census-2026",
@@ -185,6 +191,11 @@ export const allAdvisories: Advisory[] = [
     excerpt:
       "Volunteers recorded 43 species across nine counting blocks, including a new high count for Philippine Duck.",
     publishedAt: "12 Oct 2026",
+    body: [
+      "Volunteers from the PENRO, the municipal agriculture office, and three schools completed the 2026 count on 11 October across nine counting blocks.",
+      "Totals: 11,480 individuals and 43 species. Philippine Duck reached 1,240 birds — the highest count since monitoring began in 2016. Purple Heron numbers held steady at 310.",
+      "Raw counts, block maps, and observer notes are available at the Protected Area Office for researchers and students.",
+    ],
   },
   {
     slug: "migratory-season-opens",
@@ -193,6 +204,11 @@ export const allAdvisories: Advisory[] = [
     excerpt:
       "The first flocks have reached the southern shallows. Guides are adjusting departure times to 5:30 AM.",
     publishedAt: "02 Oct 2026",
+    body: [
+      "The first flocks arrived in the southern shallows on 28 September, roughly a week earlier than last year.",
+      "Peak arrivals are expected between late October and mid-November, when the northern reed beds hold the largest mixed flocks of egrets, herons, and ducks.",
+      "Guides have moved departures to 5:30 AM. Bring a light jacket — mornings on the water run about 22°C.",
+    ],
   },
   {
     slug: "typhoon-nando-lake-closure",
@@ -201,6 +217,11 @@ export const allAdvisories: Advisory[] = [
     excerpt:
       "Closure lifted on 30 September after a full safety inspection of the jetty and moorings. No damage was recorded.",
     publishedAt: "28 Sep 2026",
+    body: [
+      "The lake was closed to all boat traffic from 28 September as Typhoon Nando crossed Oriental Mindoro, bringing sustained winds of 95 km/h.",
+      "The closure was lifted on 30 September after rangers inspected the jetty, moorings, and the northern boardwalk. No structural damage or wildlife casualties were recorded.",
+      "This notice is kept for the record. It is no longer an active restriction.",
+    ],
   },
   {
     slug: "morning-fog-northern-basin",
@@ -209,6 +230,11 @@ export const allAdvisories: Advisory[] = [
     excerpt:
       "Fog banks are lingering past 8:00 AM. Operators are delaying departures and running at reduced speed.",
     publishedAt: "24 Sep 2026",
+    body: [
+      "Fog has been lingering over the northern basin past 8:00 AM, cutting visibility to under 100 metres in places.",
+      "Operators are delaying departures and running at reduced speed, with a lookout posted at the bow. Expect tours to start 30–60 minutes late.",
+      "Bring a light rain shell — the fog usually burns off by mid-morning.",
+    ],
   },
   {
     slug: "new-mooring-buoys-bayani",
@@ -217,6 +243,11 @@ export const allAdvisories: Advisory[] = [
     excerpt:
       "Twelve buoys now mark the shallow approach, keeping anchors off the reed beds during peak season.",
     publishedAt: "15 Sep 2026",
+    body: [
+      "Twelve mooring buoys were installed this month along the shallow approach to the Brgy. Bayani jetty.",
+      "The buoys keep anchors off the reed beds and give smaller boats a safe tie-off during peak season. Installation was funded by the municipal tourism office with support from the operator cooperative.",
+      "Boatmen should use the buoys rather than anchoring on the shelf.",
+    ],
   },
   {
     slug: "guides-first-aid-refresher",
@@ -225,6 +256,11 @@ export const allAdvisories: Advisory[] = [
     excerpt:
       "The two-day course covered cold-water response, capsize drills, and patient transport from the western shore.",
     publishedAt: "03 Sep 2026",
+    body: [
+      "Forty-two guides completed a two-day refresher on 30–31 August, led by the municipal health office and the Philippine Red Cross.",
+      "The course covered cold-water response, capsize drills, and patient transport from the western shore, where road access is limited.",
+      "All accredited operators now keep at least two currently certified guides on staff.",
+    ],
   },
 ];
 
